@@ -1,0 +1,9 @@
+name: dotproduct
+channels:
+  - conda-forge
+
+dependencies:
+  - python=3.12
+  - numpy
+  - pytest
+  - flake8

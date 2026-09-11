@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+set -e
+
+case "$1" in
+    test)
+        pytest -v
+        ;;
+    lint)
+        flake8 src tests
+        ;;
+    check)
+        flake8 src tests
+        pytest -v
+        ;;
+    *)
+        echo "Usage:"
+        echo "  ./run test"
+        echo "  ./run lint"
+        echo "  ./run check"
+        exit 1
+        ;;
+esac
