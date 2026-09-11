@@ -14,6 +14,7 @@ def test_dot_product_numpy_arrays():
 
     assert dot_product(x, y) == 6
 
+
 def test_dot_product_zero_vector():
     assert dot_product([0, 0, 0], [1, 2, 3]) == 0
 
