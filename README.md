@@ -1,6 +1,10 @@
 # NumPy Dot Product Example
+
+[![CI][badge]][workflow]
+
+[badge]: https://github.com/phewson/dotproduct/actions/workflows/ci.yml/badge.svg
+[workflow]: https://github.com/phewson/dotproduct/actions/workflows/ci.yml
  
-https://github.com/phewson/dotproduct/actions/workflows/ci.yml/badge.svg
  
 A simple example project demonstrating:
  
