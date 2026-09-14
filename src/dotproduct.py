@@ -18,8 +18,11 @@ def dot_product(x, y):
     """
     x = np.asarray(x)
     y = np.asarray(y)
-
+    
     if x.shape != y.shape:
-        raise ValueError("Vectors must have the same shape")
-
-    return np.dot(x, y)
+        raise ValueError("Vectors must have the same shape") 
+    
+    # Form the dot product of two vectors x and y
+    # return np.dot(x, y)
+    return x * y
+    
