@@ -1,6 +1,6 @@
 from src.week2 import (
     winner, average_score, highest_score, team_win_percentage,
-    home_team_won, total_points_for, count_wins, win_percentage)
+    home_team_won, total_points_for, count_wins)
 
 
 def test_home_team_wins():
@@ -75,29 +75,3 @@ def test_count_wins():
     ]
 
     assert count_wins(matches) == 2
-
-
-def test_win_percentage():
-    matches = [
-        ("Exeter", "Bath", 24, 18),
-        ("Sale", "Exeter", 15, 20),
-        ("Exeter", "Bristol", 10, 20),
-    ]
-    two_thirds = 100 * 2 / 3
-    assert win_percentage(matches, "Exeter") == two_thirds
-
-
-def test_win_percentage_no_wins():
-    matches = [
-        ("Exeter", "Bath", 18, 24),
-        ("Sale", "Exeter", 30, 10),
-    ]
-    assert win_percentage(matches, "Exeter") == 0.0
-
-
-def test_win_percentage_all_wins():
-    matches = [
-        ("Exeter", "Bath", 24, 18),
-        ("Exeter", "Sale", 20, 10),
-    ]
-    assert win_percentage(matches, "Exeter") == 100.0

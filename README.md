@@ -1,43 +1,120 @@
-# NumPy Dot Product Example
+# Getting Started
 
-[![CI][badge]][workflow]
+## 1. Create Your Own Repository
 
-[badge]: https://github.com/phewson/dotproduct/actions/workflows/ci.yml/badge.svg
-[workflow]: https://github.com/phewson/dotproduct/actions/workflows/ci.yml
- 
- 
-A simple example project demonstrating:
- 
-- Conda environments
-- pytest
-- flake8
-- GitHub Actions
- 
-## Installation
- 
+This repository is provided as a GitHub template:
+
+https://github.com/StatisticsExeter/mthm503_intro
+
+Select:
+
+```text
+Use this template
+```
+
+and create your own repository from it.
+
+Choose a sensible repository name such as:
+
+```text
+mthm503_intro_yourusername
+```
+
+or
+
+```text
+mthm503_python_practice
+```
+
+You should now have your own copy of the repository under your GitHub account.
+
+---
+
+## 2. Clone Your Repository
+
+Clone your repository (not the template repository).
+
+For example:
+
+```bash
+git clone https://github.com/YOUR_USERNAME/mthm503_intro_yourusername.git
+```
+
+Move into the repository:
+
+```bash
+cd mthm503_intro_yourusername
+```
+
+---
+
+## 3. Create the Conda Environment
+
+Create the Python environment described in `environment.yml`.
+
 ```bash
 conda env create -f environment.yml
-conda activate dotproduct
-``` 
-
-You will then need to "solve" the problem in file src/dotproduct.py. 
-
-As you work on the problem, you can use the `run` script to check your progress.  
-
-```bash
-./run test
-./run lint
-./run check
 ```
 
-Will run your unit tests, your linter, or both.
+This only needs to be done once.
 
-At intervals, you should save your changes to GitHub. You can do this with 
+---
+
+## 4. Activate the Environment
+
+Activate the environment:
 
 ```bash
-git add src/dotproduct.py
-git commit -m 'An informative message'
-git push
+conda activate pyintro
 ```
 
-If you make a small change to the top of this file, you will get a badge if all your tests pass.
+---
+
+## 5. Check the Available Commands
+
+Run:
+
+```bash
+./run help
+```
+
+This displays all available commands.
+
+---
+
+# Week 1
+
+To work on the Week 1 exercises:
+
+```bash
+./run week1
+```
+
+This will:
+
+1. Run the Week 1 tests.
+2. Display any failures.
+3. Run code-quality checks if all tests pass.
+
+If everything passes, you should see:
+
+```text
+✓ All tests passed
+✓ No linting issues found
+✓ Week 1 complete
+✓ Ready to commit and push
+```
+
+---
+
+# Week 2
+
+To work on the Week 2 exercises:
+
+```bash
+./run week2
+```
+
+---
+
+# 

@@ -2,6 +2,17 @@
 
 set -e
 
+
+run_week() {
+  test_file=$1
+  if [ "$2" = "verbose" ]; then
+    pytest -v "$test_file"
+  else
+    pytest -v --tb=no "$test_file"
+  fi
+}
+
+
 case "$1" in
 
     week1)
@@ -9,7 +20,7 @@ case "$1" in
         echo "Running Week 1 tests..."
         echo
 
-        pytest -v tests/test_week1.py
+        run_week tests/test_week1.py $2
 
         echo
         echo "✓ All tests passed"
@@ -30,7 +41,7 @@ case "$1" in
         echo "Running Week 2 tests..."
         echo
 
-        pytest -v tests/test_week2.py
+        run_week tests/test_week2.py $2
 
         echo
         echo "✓ All tests passed"
@@ -66,7 +77,6 @@ case "$1" in
         echo "I don't recognise that command."
         echo
         echo "Try:"
-        echo
         echo "  ./run help"
         echo
         exit 1

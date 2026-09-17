@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+set -e
+
+DEST_DIR="../mthm503_intro_student"
+
+mkdir -p "$DEST_DIR/src"
+mkdir -p "$DEST_DIR/tests"
+
+cp README.md "$DEST_DIR/"
+cp environment.yml "$DEST_DIR/"
+cp run "$DEST_DIR/" || true
+cp pytest.ini "$DEST_DIR/"
+cp -r .github "$DEST_DIR"
+
+for test_file in tests/test_*.py
+do
+    echo $test_file
+    cp $test_file $DEST_DIR/$test_file
+done
+
+for template in src/*_template.py
+do
+    filename=$(basename "$template")
+    target_name=${filename%_template.py}.py
+    cp "$template" "$DEST_DIR/src/$target_name"
+    echo "Created $target_name"
+done
+touch "$DEST_DIR/src/__init__.py"

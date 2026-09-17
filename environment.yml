@@ -1,4 +1,4 @@
-name: dotproduct
+name: pyintro
 channels:
   - conda-forge
 
