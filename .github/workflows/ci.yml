@@ -15,7 +15,7 @@ jobs:
       - name: Set up Miniconda
         uses: conda-incubator/setup-miniconda@v3
         with:
-          activate-environment: dotproduct
+          activate-environment: pyintro
           environment-file: environment.yml
           auto-activate-base: false
 

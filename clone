@@ -11,6 +11,7 @@ cp README.md "$DEST_DIR/"
 cp environment.yml "$DEST_DIR/"
 cp run "$DEST_DIR/" || true
 cp pytest.ini "$DEST_DIR/"
+cp .gitignore "$DEST_DIR/"
 cp -r .github "$DEST_DIR"
 
 for test_file in tests/test_*.py
@@ -27,3 +28,4 @@ do
     echo "Created $target_name"
 done
 touch "$DEST_DIR/src/__init__.py"
+touch "$DEST_DIR/tests/__init__.py"
