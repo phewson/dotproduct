@@ -1,0 +1,22 @@
+Skills developed
+
+- DF01 Working fluently and securely across a range of digital tools, platforms and applications
+- DF05 Adopting and developing new practices with digital technologies
+- IP04 Problem solving and decision-making
+- CT04 Insightful questioning and analysis of descriptive and numerical information
+- CT06 Drawing qualitative and quantitative evidence-based, independent conclusions
+- RS03 Reflecting on experiences and learning from mistakes with growth mindset
+
+Strong
+
+- IP03 Identifying and defining problems Students have to formulate classification tasks precisely, define target variables, identify predictors, and recognise issues such as class imbalance.
+- DF02 Utilising technology to find, interpret and visualise data and narrative information Especially when exploring datasets and interpreting outputs.
+- MT04 Mathematical modelling Classification models are mathematical models even if students don't derive the underlying mathematics.
+- MT05 Graphical and visual data representation If you use confusion matrices, ROC-like visualisations, PCA plots, cluster visualisations, or exploratory plots.
+- RS02 Managing time and tasks independently Particularly if students are maintaining environments, completing coding exercises, and debugging.
+
+Potentially relevant depending on course design
+
+- CT03 Developing and upholding appropriate academic integrity Especially if you discuss use of generative AI, code attribution, reproducibility, or responsible reuse of code.
+- DF06 Assessing the credibility and reliability of digital information
+- IP06 Managing projects through to completion If there is a multi-stage coursework or capstone project.

@@ -71,7 +71,9 @@ case "$1" in
         echo "      Show this message"
         echo
         ;;
-
+    check)
+        python verify.py
+        ;;
     *)
         echo
         echo "I don't recognise that command."

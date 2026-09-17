@@ -13,6 +13,7 @@ cp run "$DEST_DIR/" || true
 cp pytest.ini "$DEST_DIR/"
 cp .gitignore "$DEST_DIR/"
 cp -r .github "$DEST_DIR"
+cp verify.py "$DEST_DIR"
 
 for test_file in tests/test_*.py
 do

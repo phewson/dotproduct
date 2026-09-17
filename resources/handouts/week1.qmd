@@ -9,6 +9,19 @@ format:
 
 ![](../images/logo.png){width=100px}
 
+## The aim of these first two weeks is not to turn you into an expert Python programmer.
+
+Instead, the goal is to become comfortable with a professional workflow for writing and checking code. Throughout the module you will repeatedly:
+
+1. Read a specification.
+2. Write some Python code.
+3. Run automated tests.
+4. Fix any problems.
+5. Commit and push your changes.
+
+The examples in this repository use rugby scoring because it provides a simple problem domain that lets us focus on programming rather than data analysis. Later in the module we will apply exactly the same workflow to working with data, visualisations, databases, and machine learning models.
+
+You are not expected to remember all of Python from previous study. Some students will have written a lot of code before, while others may feel very rusty. The notes below are intended as a refresher and a source of examples that you can refer back to while working through the exercises.
 
 ## Learning Outcomes
 
@@ -24,24 +37,49 @@ By the end of this week, you should be able to:
 - Run automated tests with `pytest`.
 - Push your work to GitHub.
 
-This week deliberately focuses on **small, self-contained functions**. The goal is not to learn everything about Python. The goal is to develop a way of working:
 
-1. Read the specification.
-2. Implement a function.
-3. Run the tests.
-4. Fix any mistakes.
-5. Commit and push your changes.
+## The Course Repository
 
-Later in the module we will use exactly the same workflow for data pipelines, visualisations, and machine learning.
+For the first two weeks we will use a training repository:
 
+<https://github.com/StatisticsExeter/mthm503_intro>
 
+Rather than working directly from this repository, you should create **your own repository** from the template and work there.
 
-# Running the Tests
+The README file in the template repository explains how to:
+
+1. Create your own repository from the template.
+2. Clone your repository to your computer.
+3. Create the Conda environment.
+4. Activate the environment.
+5. Run the exercises.
+
+Once you have completed those steps you will have everything needed for the Week 1 and Week 2 exercises.
+
+To help you check this has been done correctly, you can enter the repository and type:
+
+```bash
+./run check
+```
+
+This will carry out a number of checks, and print some details to your screen. You should paste these into the ELE quiz for week 1. Having this information available makes it easier to help if there are any problems.
+
+## Your Goal This Week
+
+Your work for Week 1 is contained in:
+
+```text
+src/week1.py
+```
+
+You should read the docstrings carefully, and replace the code (currently every function just has `pass`) with code that does what the docstrings require.  If you do that correctly, the unit tests will pass.
+
+## Running the Tests
 
 From the root of the repository:
 
 ```bash
-./run test
+./run week1
 ```
 
 If all tests pass, you should see output similar to:
@@ -52,10 +90,41 @@ If all tests pass, you should see output similar to:
 =========================
 ```
 
+
+
+
 If a test fails, read the error message carefully. The error message is usually trying to help you.
 
+Your goal is to work on the functions in file `src/week1.py` and complete the functions. When you complete them correctly, the unit tests will pass.
 
-# Variables
+When you have reached an end point in your work (which could be one test passing, it could be all tests passing), you should commit your code, and push it to GitHub.
+
+- `git add src/week1.py`
+- `git commit <useful_message>`
+- `git push`
+
+
+---
+
+# Running pytest
+
+To run all tests:
+
+```bash
+./run week1
+```
+
+If you really want the full output from the tests you can run
+
+```bash
+./run week1 verbose
+```
+
+You might also find that we're running a linter. This is a form of static code analysis <https://dev.to/securitystefan/what-is-static-code-analysis-and-how-does-it-work-2b0l> which can help us work as a team and sometimes find errors in our code.  At this stage, you can probably treat a lot of these comments as advisory, but they usually do tell you exactly which line they are unhappy with.
+
+# Python recap
+
+## Variables
 
 Variables allow you to store values.
 
@@ -725,18 +794,12 @@ This approach has advantages:
 
 Try to think of functions as building blocks.
 
----
-
-# Running pytest
-
-To run all tests:
-
-```bash
-./run test
-```
 
 
 # Collecting Values Together
+
+(This is mainly intended as a preview of the work we will do next week)
+
 
 So far we have mostly used individual values.
 
