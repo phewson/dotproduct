@@ -1,0 +1,794 @@
+---
+title: "MTHM503 Week 2"
+subtitle: "Python Refresher for Rugby Scoring Functions"
+author: "Paul Hewson"
+format:
+  html:
+    embed-resources: true
+---
+
+![](../images/logo.png){width=100px}
+
+
+# Week 2: Working with Collections of Data
+
+## Learning Outcomes
+
+By the end of this week, you should be able to:
+
+- Work with tuples.
+- Use tuple unpacking.
+- Work with lists.
+- Iterate over lists using a `for` loop.
+- Work with dictionaries.
+- Access values stored in dictionaries.
+- Write functions that process collections of data.
+- Reuse existing functions when writing new ones.
+- Understand common patterns such as accumulation and counting.
+
+Last week we mostly worked with individual values:
+
+```python
+tries = 3
+
+team_name = "Exeter"
+```
+
+This week we will work with groups of related values. This is an important step towards data science because datasets are collections of records rather than individual numbers.
+
+# Why Are We Doing This?
+
+You might wonder why we are asking you to calculate things such as averages manually when pandas already provides functions like:
+
+```python
+df["points_for"].mean()
+```
+
+This is a reasonable question.
+
+The answer is that we are trying to understand the ideas before using the tools.
+
+For example, before using:
+
+```python
+df["points_for"].mean()
+```
+
+it is useful to understand that a mean is calculated by:
+
+1. Adding all values together.
+2. Counting how many values there are.
+3. Dividing the total by the count.
+
+In Python:
+
+```python
+total = 0
+
+for score in scores:
+    total += score
+
+return total / len(scores)
+```
+
+Pandas performs exactly the same calculation. It is simply doing it for us.
+
+Similarly, later in the module we will use functions such as:
+
+```python
+df["points_for"].sum()
+```
+
+and
+
+```python
+df["points_for"].max()
+```
+
+Before we use them, we want to understand the underlying ideas.
+
+Think of this week as learning what these operations actually do.
+
+# Collections of Values
+
+Real-world data rarely consists of a single number.
+
+Instead, we often need to store several related values together.
+
+Python provides several ways of doing this.
+
+For this week's exercises we will use:
+
+- tuples
+- lists
+- dictionaries
+
+
+# Tuples
+
+A tuple stores several values together.
+
+Example:
+
+```python
+match = (
+    "Exeter",
+    "Bath",
+    24,
+    18
+)
+```
+
+This tuple describes a rugby match.
+
+It contains:
+
+```text
+home team     = Exeter
+away team     = Bath
+home score    = 24
+away score    = 18
+```
+
+Notice that the position of each value matters.
+
+
+# Tuple Unpacking
+
+A useful technique is tuple unpacking.
+
+Suppose we have:
+
+```python
+match = (
+    "Exeter",
+    "Bath",
+    24,
+    18
+)
+```
+
+We can unpack the tuple into variables.
+
+```python
+home_team, away_team, home_score, away_score = match
+```
+
+After this:
+
+```python
+home_team
+```
+
+contains:
+
+```python
+"Exeter"
+```
+
+and:
+
+```python
+home_score
+```
+
+contains:
+
+```python
+24
+```
+
+This is often easier to read than referring to the positions directly.
+
+For example:
+
+```python
+home_team, away_team, home_score, away_score = match
+```
+
+is usually easier to understand than:
+
+```python
+match[0]
+match[1]
+match[2]
+match[3]
+```
+
+The `winner()` exercise uses tuple unpacking.
+
+
+# Conditional Logic
+
+Last week we saw simple conditionals.
+
+This week we will use several conditions together.
+
+Example:
+
+```python
+if home_score > away_score:
+    return home_team
+
+if away_score > home_score:
+    return away_team
+
+return "Draw"
+```
+
+Notice that there are three possible outcomes:
+
+- home team wins
+- away team wins
+- draw
+
+The function returns as soon as it finds the correct answer.
+
+# Lists
+
+A list stores many values together.
+
+Example:
+
+```python
+scores = [20, 30, 40]
+```
+
+This represents several scores.
+
+Lists are useful when we have lots of similar pieces of information.
+
+For example:
+
+```python
+scores = [
+    24,
+    18,
+    31,
+    20,
+]
+```
+
+
+# Iterating Through a List
+
+A very common task is processing every item in a list.
+
+Example:
+
+```python
+for score in scores:
+    print(score)
+```
+
+Think of this as:
+
+> For every score in the list called scores...
+
+Suppose:
+
+```python
+scores = [20, 30, 40]
+```
+
+The loop runs three times.
+
+First:
+
+```python
+score = 20
+```
+
+Then:
+
+```python
+score = 30
+```
+
+Then:
+
+```python
+score = 40
+```
+
+Many programming languages require you to work with positions inside the list.
+
+In Python we often work directly with the values.
+
+
+# The Accumulator Pattern
+
+One of the most important patterns in programming is accumulation.
+
+Suppose we want to add together lots of scores.
+
+We start with:
+
+```python
+total = 0
+```
+
+Then:
+
+```python
+for score in scores:
+    total += score
+```
+
+Finally:
+
+```python
+return total
+```
+
+For example:
+
+```python
+scores = [20, 30, 40]
+```
+
+The loop works like this:
+
+| Step | total |
+|-------|--------|
+| Start | 0 |
+| Add 20 | 20 |
+| Add 30 | 50 |
+| Add 40 | 90 |
+
+Final result:
+
+```python
+90
+```
+
+This pattern appears throughout data science.
+
+# Calculating an Average
+
+The average (mean) is calculated as:
+
+```text
+total of all values
+-------------------
+number of values
+```
+
+Suppose:
+
+```python
+scores = [20, 30, 40]
+```
+
+The total is:
+
+```python
+90
+```
+
+The number of values is:
+
+```python
+3
+```
+
+Therefore:
+
+```python
+90 / 3
+```
+
+which gives:
+
+```python
+30
+```
+
+A solution therefore looks like:
+
+```python
+total = 0
+
+for score in scores:
+    total += score
+
+return total / len(scores)
+```
+
+The function:
+
+```python
+len(scores)
+```
+
+returns the number of items in the list.
+
+For example:
+
+```python
+len([20, 30, 40])
+```
+
+returns:
+
+```python
+3
+```
+
+
+# Finding the Largest Value
+
+Another common task is finding the highest value.
+
+Suppose:
+
+```python
+scores = [10, 25, 17]
+```
+
+We begin by assuming the first value is the largest.
+
+```python
+highest = scores[0]
+```
+
+We then compare every other score to it.
+
+```python
+for score in scores:
+    if score > highest:
+        highest = score
+```
+
+If we find a larger score, we replace our current answer.
+
+This pattern appears in the `highest_score()` exercise.
+
+
+# Dictionaries
+
+A dictionary stores values using names called keys.
+
+Example:
+
+```python
+team = {
+    "name": "Exeter",
+    "wins": 12,
+    "losses": 3,
+}
+```
+
+This contains three pieces of information.
+
+We can retrieve values using the key.
+
+```python
+team["name"]
+```
+
+returns:
+
+```python
+"Exeter"
+```
+
+and:
+
+```python
+team["wins"]
+```
+
+returns:
+
+```python
+12
+```
+
+
+# Why Use Dictionaries?
+
+Compare:
+
+```python
+("Exeter", 12, 3)
+```
+
+with:
+
+```python
+{
+    "name": "Exeter",
+    "wins": 12,
+    "losses": 3,
+}
+```
+
+The dictionary version explains what the numbers mean.
+
+This often makes code easier to read and maintain.
+
+
+# Lists of Dictionaries
+
+Datasets are often represented as lists of dictionaries.
+
+Example:
+
+```python
+matches = [
+    {
+        "points_for": 24,
+        "points_against": 18,
+    },
+    {
+        "points_for": 10,
+        "points_against": 12,
+    },
+]
+```
+
+Each dictionary represents one match.
+
+The list represents a season.
+
+This should start to look similar to a table.
+
+
+# Iterating Through Dictionaries
+
+Suppose:
+
+```python
+matches = [
+    {"points_for": 24},
+    {"points_for": 18},
+]
+```
+
+We can loop through the matches.
+
+```python
+for match in matches:
+    print(match)
+```
+
+Inside the loop:
+
+```python
+match
+```
+
+contains one dictionary at a time.
+
+We can access values using keys.
+
+```python
+match["points_for"]
+```
+
+
+# Counting Things
+
+Another variation of accumulation is counting.
+
+Suppose we want to count victories.
+
+We start with:
+
+```python
+wins = 0
+```
+
+Then:
+
+```python
+for match in matches:
+    if match["points_for"] > match["points_against"]:
+        wins += 1
+```
+
+Every time a win is found, we increase the count.
+
+This pattern is used in `count_wins()`.
+
+
+# Reusing Existing Functions
+
+As programs become larger, it is useful to reuse functions rather than duplicating logic.
+
+Suppose we already have:
+
+```python
+winner(match)
+```
+
+which determines the winner of a match.
+
+Instead of rewriting the winning logic, we can use the existing function.
+
+Example:
+
+```python
+if winner(match) == team_name:
+    wins += 1
+```
+
+This is often preferable because:
+
+- less code
+- easier testing
+- easier maintenance
+- fewer bugs
+
+Professional software development relies heavily on this idea.
+
+
+# The Capstone Challenge
+
+The final exercise asks you to calculate a team's win percentage. For this, you will need to write your own tests as well.
+
+You will need to combine several skills:
+
+- tuples
+- tuple unpacking
+- loops
+- counting
+- function calls
+- conditionals
+
+Most importantly:
+
+**reuse your existing `winner()` function rather than rewriting the winner logic.**
+
+This is exactly the style of programming we use in larger data analysis projects.
+
+# Writing Your Own Unit Test
+
+For this final exercise you will write your own unit test rather than being provided with one.
+
+Create a new test function in `test_week2.py`.
+
+Pytest automatically discovers functions whose names begin with:
+
+```python
+test_
+```
+
+For example:
+
+```python
+def test_win_percentage():
+    ...
+```
+
+The `test_` prefix is important. If you omit it, pytest will not run your test.
+
+---
+
+## Importing the Function
+
+Before you can test a function, you must import it.
+
+For example:
+
+```python
+from src.week2 import win_percentage
+```
+
+This tells Python:
+
+> Import the `win_percentage()` function from the file `week2.py`
+> located inside the `src` directory.
+
+You can import multiple functions if needed:
+
+```python
+from src.week2 import (
+    winner,
+    win_percentage,
+)
+```
+
+---
+
+## What Should a Test Do?
+
+A unit test usually follows a simple pattern:
+
+1. Create some test data.
+2. Calculate the expected answer yourself.
+3. Call the function.
+4. Check that the result matches your expectation.
+
+For example:
+
+```python
+matches = [
+    ("Exeter", "Bath", 24, 18),
+    ("Sale", "Exeter", 15, 20),
+    ("Exeter", "Bristol", 10, 20),
+]
+
+expected = (2 / 3) * 100
+
+assert win_percentage(matches, "Exeter") == expected
+```
+
+The `assert` statement checks whether something is true.
+
+If it is true, the test passes.
+
+If it is false, the test fails.
+
+---
+
+## Choosing Good Test Data
+
+Try to pick a small example where you can easily work out the answer by hand.
+
+For example:
+
+```python
+matches = [
+    ("Exeter", "Bath", 20, 10),
+    ("Exeter", "Sale", 15, 20),
+]
+```
+
+Exeter wins one match and loses one match.
+
+Therefore:
+
+```text
+wins = 1
+matches = 2
+
+win percentage = 50%
+```
+
+The expected answer is easy to calculate and easy to verify.
+
+---
+
+## Testing Edge Cases
+
+Once your main test passes, consider writing an additional test.
+
+For example:
+
+- A team that wins every match.
+- A team that wins no matches.
+- A season containing a draw.
+
+Professional software developers spend a significant amount of time thinking about unusual or boundary cases. Good tests help us catch mistakes before they become bugs.
+
+---
+
+## Why Write Tests?
+
+A good unit test acts as an executable example of how a function should behave.
+
+When you later change your code, you can run:
+
+```bash
+pytest
+```
+
+and immediately check that everything still works.
+
+This is one of the reasons testing is so widely used in professional software development, data science, and data engineering projects.
+
+# Summary
+
+This week introduces several fundamental ideas:
+
+- Tuples store related values.
+- Tuple unpacking gives meaningful names to values.
+- Lists store collections of items.
+- Dictionaries store named values.
+- Loops process every item in a collection.
+- Accumulators calculate totals and counts.
+- Functions can be reused inside other functions.
+
+Although these examples are small, they introduce patterns that appear repeatedly in data science, data engineering, and software development.

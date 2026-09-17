@@ -1,0 +1,1050 @@
+---
+title: "MTHM503 Background."
+subtitle: "Python Refresher for Rugby Scoring Functions"
+author: "Paul Hewson"
+format:
+  html:
+    embed-resources: true
+---
+
+![](../images/logo.png){width=100px}
+
+
+## Learning Outcomes
+
+By the end of this week, you should be able to:
+
+- Create and use variables.
+- Write simple Python functions.
+- Return values from functions.
+- Perform arithmetic calculations.
+- Write simple conditional statements.
+- Work with strings.
+- Use f-strings to create messages.
+- Run automated tests with `pytest`.
+- Push your work to GitHub.
+
+This week deliberately focuses on **small, self-contained functions**. The goal is not to learn everything about Python. The goal is to develop a way of working:
+
+1. Read the specification.
+2. Implement a function.
+3. Run the tests.
+4. Fix any mistakes.
+5. Commit and push your changes.
+
+Later in the module we will use exactly the same workflow for data pipelines, visualisations, and machine learning.
+
+
+
+# Running the Tests
+
+From the root of the repository:
+
+```bash
+./run test
+```
+
+If all tests pass, you should see output similar to:
+
+```text
+=========================
+7 passed
+=========================
+```
+
+If a test fails, read the error message carefully. The error message is usually trying to help you.
+
+
+# Variables
+
+Variables allow you to store values.
+
+```python
+tries = 3
+```
+
+Here:
+
+- `tries` is the variable name.
+- `3` is the value.
+
+You can use variables in calculations.
+
+```python
+tries = 3
+
+points = tries * 5
+
+print(points)
+```
+
+Output:
+
+```text
+15
+```
+
+Variables can store different types of values.
+
+```python
+team_name = "Exeter"
+
+score = 24
+
+won = True
+```
+
+
+# Arithmetic
+
+Python can perform arithmetic calculations.
+
+```python
+2 + 3
+```
+
+returns:
+
+```python
+5
+```
+
+Some common operators are:
+
+```python
++
+-
+*
+/
+```
+
+Examples:
+
+```python
+5 + 3
+```
+
+```python
+10 - 4
+```
+
+```python
+3 * 5
+```
+
+```python
+12 / 4
+```
+
+For rugby scoring, multiplication is particularly useful.
+
+```python
+tries = 4
+
+points = tries * 5
+```
+
+which gives:
+
+```python
+20
+```
+
+
+# Functions
+
+Functions allow us to group reusable code together.
+
+A simple function looks like this:
+
+```python
+def double(x):
+    return x * 2
+```
+
+Let's break this down.
+
+```python
+def
+```
+
+tells Python that we are defining a function.
+
+```python
+double
+```
+
+is the name of the function.
+
+```python
+x
+```
+
+is called a parameter.
+
+```python
+return
+```
+
+sends a value back to the code that called the function.
+
+
+## Calling a Function
+
+Once a function has been defined, it can be used.
+
+```python
+result = double(10)
+
+print(result)
+```
+
+Output:
+
+```text
+20
+```
+
+
+
+# Function Parameters
+
+Functions may take one or more inputs.
+
+Example:
+
+```python
+def add(a, b):
+    return a + b
+```
+
+Usage:
+
+```python
+add(3, 4)
+```
+
+returns:
+
+```python
+7
+```
+
+For the rugby exercises:
+
+```python
+def try_points(tries):
+    return tries * 5
+```
+
+the parameter is:
+
+```python
+tries
+```
+
+and the function returns the points scored from those tries.
+
+
+# Returning Values
+
+Many beginners confuse `print()` and `return`.
+
+Consider:
+
+```python
+def double(x):
+    print(x * 2)
+```
+
+This displays a value but does not return it.
+
+Compare with:
+
+```python
+def double(x):
+    return x * 2
+```
+
+This returns the value so it can be used elsewhere.
+
+For this week's exercises you should almost always use:
+
+```python
+return
+```
+
+rather than:
+
+```python
+print()
+```
+
+
+
+# Using Existing Functions
+
+Functions can call other functions.
+
+Suppose we have:
+
+```python
+def try_points(tries):
+    return tries * 5
+```
+
+and:
+
+```python
+def conversion_points(conversions):
+    return conversions * 2
+```
+
+We can use both functions inside another function.
+
+```python
+def total_score(tries, conversions):
+    return (
+        try_points(tries)
+        + conversion_points(conversions)
+    )
+```
+
+This is often better than repeating calculations.
+
+Think of functions as building blocks.
+
+
+
+# Boolean Values
+
+Python has two special values:
+
+```python
+True
+```
+
+and
+
+```python
+False
+```
+
+These are called Booleans.
+
+Example:
+
+```python
+5 > 2
+```
+
+returns:
+
+```python
+True
+```
+
+while:
+
+```python
+2 > 5
+```
+
+returns:
+
+```python
+False
+```
+
+
+
+# Comparison Operators
+
+Python can compare values.
+
+```python
+# Comparison Operators
+
+Python can compare values.
+
+```python
+>
+```
+
+greater than
+
+```python
+<
+```
+
+less than
+
+```python
+>=
+```
+
+greater than or equal to
+
+```python
+<=
+```
+
+less than or equal to
+
+```python
+==
+```
+
+equal to
+
+Examples:
+
+```python
+3 > 2
+```
+
+returns
+
+```python
+True
+```
+
+```python
+3 == 2
+```
+
+returns
+
+```python
+False
+```
+
+```python
+3 <= 3
+```
+
+returns
+
+```python
+True
+```
+
+These comparisons are often used inside conditional statements.
+
+---
+
+# Conditionals
+
+Conditionals allow our code to make decisions.
+
+The basic structure is:
+
+```python
+if condition:
+    do_something()
+```
+
+For example:
+
+```python
+score = 25
+
+if score > 20:
+    print("High scoring game!")
+```
+
+The code inside the `if` block only runs when the condition is `True`.
+
+We can also return values based on a condition.
+
+```python
+def is_valid_conversion_count(
+    tries,
+    conversions
+):
+    if conversions <= tries:
+        return True
+
+    return False
+```
+
+Examples:
+
+```python
+is_valid_conversion_count(3, 2)
+```
+
+returns
+
+```python
+True
+```
+
+because 2 conversions from 3 tries is possible.
+
+```python
+is_valid_conversion_count(3, 4)
+```
+
+returns
+
+```python
+False
+```
+
+because 4 conversions from 3 tries is impossible.
+
+---
+
+# Strings
+
+Strings represent text.
+
+Examples:
+
+```python
+"Exeter"
+```
+
+```python
+"Bath"
+```
+
+```python
+"Hello world"
+```
+
+Strings are surrounded by quotation marks.
+
+```python
+team_name = "Exeter"
+```
+
+Unlike numbers, strings represent text rather than quantities.
+
+```python
+24
+```
+
+is a number.
+
+```python
+"24"
+```
+
+is text.
+
+These are not the same thing.
+
+---
+
+# f-Strings
+
+A common task is combining text and variables.
+
+Suppose we have:
+
+```python
+team_name = "Exeter"
+
+score = 24
+```
+
+We might want to create the message:
+
+```text
+Exeter scored 24 points.
+```
+
+Python's f-strings make this straightforward.
+
+```python
+message = f"{team_name} scored {score} points."
+```
+
+The `f` before the quotation marks tells Python to evaluate anything inside `{}`.
+
+Example:
+
+```python
+name = "Sam"
+
+greeting = f"Hello {name}"
+```
+
+produces:
+
+```text
+Hello Sam
+```
+
+You will need f-strings for the `result_message()` exercise.
+
+---
+
+# Reading the Documentation
+
+Every function in this repository contains a docstring.
+
+For example:
+
+```python
+def try_points(tries):
+    """
+    Calculate the number of points scored from tries.
+
+    Each try is worth 5 points.
+
+    Parameters
+    ----------
+    tries : int
+        Number of tries scored.
+
+    Returns
+    -------
+    int
+        Total points scored from tries.
+    """
+```
+
+Treat the docstring as a specification.
+
+The most important sections are:
+
+## Parameters
+
+These tell you what the function receives as input.
+
+```python
+tries : int
+```
+
+means the function expects an integer called `tries`.
+
+## Returns
+
+These tell you what the function should give back.
+
+```python
+int
+```
+
+means the function should return an integer.
+
+## Examples
+
+These show expected behaviour.
+
+```python
+>>> try_points(3)
+15
+```
+
+This tells us exactly what should happen when the function is called.
+
+In many cases you should be able to solve the exercise without looking at the tests.
+
+---
+
+# Understanding Function Calls
+
+Consider:
+
+```python
+def try_points(tries):
+    return tries * 5
+```
+
+When we write:
+
+```python
+result = try_points(3)
+```
+
+Python performs the following steps:
+
+1. Set `tries` equal to `3`.
+2. Calculate `3 * 5`.
+3. Return `15`.
+4. Store the result in `result`.
+
+So afterwards:
+
+```python
+result
+```
+
+contains:
+
+```python
+15
+```
+
+---
+
+# Using Functions Inside Other Functions
+
+Functions can call other functions.
+
+This is an important programming technique.
+
+Suppose we already have:
+
+```python
+def try_points(tries):
+    return tries * 5
+```
+
+and
+
+```python
+def conversion_points(conversions):
+    return conversions * 2
+```
+
+We can build larger functions from smaller ones.
+
+```python
+def total_score(
+    tries,
+    conversions,
+    penalties,
+    drop_goals
+):
+    return (
+        try_points(tries)
+        + conversion_points(conversions)
+    )
+```
+
+This approach has advantages:
+
+- Easier to read.
+- Easier to test.
+- Easier to fix if a bug is found.
+
+Try to think of functions as building blocks.
+
+---
+
+# Running pytest
+
+To run all tests:
+
+```bash
+./run test
+```
+
+
+# Collecting Values Together
+
+So far we have mostly used individual values.
+
+```python
+team_name = "Exeter"
+
+score = 24
+```
+
+Sometimes we want to group related values together.
+
+Python provides several ways of doing this.
+
+We will use:
+
+- lists
+- tuples
+- dictionaries
+
+in later exercises.
+
+---
+
+# Lists
+
+A list stores multiple values in order.
+
+Example:
+
+```python
+scores = [24, 18, 31, 20]
+```
+
+This represents several scores collected together.
+
+A list can contain any number of values.
+
+```python
+teams = [
+    "Exeter",
+    "Bath",
+    "Sale",
+]
+```
+
+Lists are useful when we have many similar things.
+
+For example:
+
+```python
+scores = [24, 18, 31, 20]
+```
+
+represents four match scores.
+
+You can loop over every value in a list.
+
+```python
+for score in scores:
+    print(score)
+```
+
+Output:
+
+```text
+24
+18
+31
+20
+```
+
+Notice the pattern:
+
+```python
+for score in scores:
+```
+
+means:
+
+> For every score in the list called scores...
+
+This style is often easier to read than using numerical positions.
+
+---
+
+# Tuples
+
+A tuple stores several values together.
+
+Example:
+
+```python
+match = (
+    "Exeter",
+    "Bath",
+    24,
+    18
+)
+```
+
+This tuple contains information about a match:
+
+- home team
+- away team
+- home score
+- away score
+
+Unlike a list, the position of each value has a specific meaning.
+
+In later exercises we will represent matches using tuples.
+
+---
+
+# Tuple Unpacking
+
+A useful technique is tuple unpacking.
+
+Suppose we have:
+
+```python
+match = (
+    "Exeter",
+    "Bath",
+    24,
+    18
+)
+```
+
+We can unpack the values into variables.
+
+```python
+home_team, away_team, home_score, away_score = match
+```
+
+After this:
+
+```python
+home_team
+```
+
+contains:
+
+```python
+"Exeter"
+```
+
+and
+
+```python
+home_score
+```
+
+contains:
+
+```python
+24
+```
+
+Many programmers find this easier to read than referring to positions such as:
+
+```python
+match[0]
+match[1]
+match[2]
+match[3]
+```
+
+because the variable names describe the meaning of the values.
+
+---
+
+# Dictionaries
+
+A dictionary stores values using names called keys.
+
+Example:
+
+```python
+team = {
+    "name": "Exeter",
+    "wins": 12,
+    "losses": 4,
+}
+```
+
+This contains three pieces of information about a team.
+
+We can access a value using its key.
+
+```python
+team["wins"]
+```
+
+returns:
+
+```python
+12
+```
+
+Similarly:
+
+```python
+team["name"]
+```
+
+returns:
+
+```python
+"Exeter"
+```
+
+Dictionaries are useful when we want values to have descriptive names.
+
+---
+
+# Lists of Dictionaries
+
+In data science we often have many records.
+
+For example:
+
+```python
+matches = [
+    {
+        "points_for": 24,
+        "points_against": 18,
+    },
+    {
+        "points_for": 10,
+        "points_against": 12,
+    },
+]
+```
+
+This is a list containing two dictionaries.
+
+Each dictionary represents one match.
+
+This structure should look familiar later when we start working with tables and DataFrames.
+
+
+# Iterating Over a List
+
+A common pattern is:
+
+```python
+for match in matches:
+    print(match)
+```
+
+Think of this as:
+
+> For every match in matches...
+
+The variable after `for` is chosen by you.
+
+For example, these are both valid:
+
+```python
+for match in matches:
+```
+
+```python
+for entry in matches:
+```
+
+```python
+for game in matches:
+```
+
+Choose a name that helps explain what each item represents.
+
+
+# Why We Are Learning These Structures
+
+Later in the course we will work with data tables.
+
+For example:
+
+| Team | Wins | Losses |
+|--------|--------|--------|
+| Exeter | 12 | 4 |
+| Bath | 10 | 6 |
+
+Before using pandas DataFrames, it helps to understand simpler Python structures.
+
+A rough progression is:
+
+```text
+single value
+    ↓
+list
+    ↓
+tuple
+    ↓
+dictionary
+    ↓
+list of dictionaries
+    ↓
+DataFrame
+```
+
+The goal is not to memorise every detail now.
+
+For Week 1, simply remember:
+
+- Lists store many similar values.
+- Tuples store a fixed collection of values.
+- Dictionaries store values with descriptive names.
+- Loops let us process every item in a collection.
+
