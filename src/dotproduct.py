@@ -22,4 +22,5 @@ def dot_product(x, y):
     if x.shape != y.shape:
         raise ValueError("Vectors must have the same shape")
 
+    # Form the dot product of two vectors x and y
     return np.dot(x, y)
